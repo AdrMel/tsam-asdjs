@@ -21,7 +21,7 @@ function ex_1_I(array){
 // Complessità: O(n)
 
 function ex_1_R(array){
-  if(array.length <= 0){
+  if(array.length == 0 || array[0] < 0){
     return 0;
    } else {
         return array[0] + ex_1_R(array.slice(1));
@@ -195,6 +195,7 @@ function div(a, b){
   cont = 0;
   divid = a;
   divis = b;
+  risp = [];
     do{
      cont++;
      divid = divid - divis;
@@ -205,8 +206,8 @@ function div(a, b){
         if(divis > divid){
             r = divid;
         }
-    
-  return cont + ' resto ' + r;  
+    risp = [r, divid];
+  return risp;
 }    
 
 // Complessità: O(n)
