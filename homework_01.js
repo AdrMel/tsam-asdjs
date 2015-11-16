@@ -191,23 +191,15 @@ Si calcoli la divisione e il resto della divisione tra due numeri a, b maggiori 
 // Complessità: O(n)
 
 function div(a, b){
-  r = 0;
-  cont = 0;
-  divid = a;
-  divis = b;
-  risp = [];
-    do{
-     cont++;
-     divid = divid - divis;
-         if(divid < 0) {
-            divid = 0; 
-          }
-    }while(divid >= divis);
-        if(divis > divid){
-            r = divid;
-        }
-    risp = [r, divid];
-  return risp;
+  var quoz = 0;
+    while(a - b >= 0){
+      var c = a - b;
+      a = c;
+      quoz++;
+    }
+    var r = a;
+    var a = [quoz, r];
+    return a;
 }    
 
 // Complessità: O(n)
@@ -295,22 +287,26 @@ function creaMatrice(myArray){
 
 // Complessità: O(n)
 
-function creaMatriceR(myArray){
-  if(myArray.length == 0){   
-    matrice = [[]]; 
-    return matrice;
-  } else {
-    return matrice[[myArray[0]], [creaMatriceR(myArray.slice(1))]];
-  }
+function ex_8_R(aa){
+	var n = Math.sqrt(aa.length); 
+    var ab = new Array(n);
+    for(var i = 0; i < n; i++){
+        ab[i] = new Array(n);
+    }
+    return swapMx(aa, ab, n, 0);
+}
+function swapMx(aa, aRes, n, i){
+    if(i == aa.length)
+        return aRes;
+    aRes[Math.floor(i / n)][i % n] = aa[i];
+    return swapMx(aa, aRes, n, ++i);
 }
 
 // Per Tiziano
 function ex_8_I(myArray){
   return creaMatrice(myArray);
 }
-function ex_8_R(myArray){
-  return creaMatriceR(myArray);
-}
+
 
 /*
 Esercizio 9
@@ -335,16 +331,7 @@ function invert(myArray){
 
 // Complessità: O(n)
 
-function invertR(myArray, acc){
-   acc = myArray.length;
-    if(myArray.length == 0){
-        yarra = [];
-        return yarra;
-     } else { 
-        yarra[0] = acc;
-        return invertR(myArray.slice(1), (acc - 1));
-        }
-}
+
 
 //Per Tiziano
 
@@ -355,7 +342,14 @@ function ex_9_I(myArray){
 function ex_9_R(myArray){
   return invertR(myArray);
 }
-
+function invertR(myArray){
+    
+    if(myArray.length == 1){
+    return myArray;
+    } else {
+      return new Array(0).concat(myArray.pop(),invertR(myArray));
+    }
+}
 /*
 Esercizio 10
 Dati due interi a, n maggiori di 0, scrivere un algoritmo che crea un array di n elementi
@@ -379,8 +373,9 @@ function creaArr(a, n){
 // Complessità: O(n)
 
 function creaArrR(a, n){
+    myArray = [];
     if(n == 0){
-      myArray = [];
+      return myArray;
        return myArray[a];
      } else {
        return a, creaArr(a, (n - 1));
@@ -407,7 +402,7 @@ Output: A = {5, 1, 2, 8}
 
 // Complessità: O(n)
 
-function firstOdds(myArray){
+function firstOdds(array){
     odd = [];
     even = [];
     disp = 0;
@@ -426,19 +421,24 @@ function firstOdds(myArray){
 
 // Complessità O(n);
 
-function firstOddsRC(myArray){
-  disp = [];
-  pari = [];
-    if(myArray.length == 0){
-      return disp.concat(pari);
-    } else {
-      if(myArray[0] % 2 == 0){
-        disp[0] = myArray[0];
-        return disp, firstOddsRC(myArray.slice(1));
-      } else {
-        pari[0] = myArray[0];
-        return pari, firstOddsRC(myArray.slice(1));
-      }
+function ex_11_R(a){
+    var nOdds = 0;
+    for(var i=0;i<a.length;i++){
+        if(a[i]%2!=0)
+            nOdds++;
+    }
+    return orderOdds(a,nOdds,new Array(a.length),0);
+}
+function orderOdds(a,freePosForEven,b,i){
+    if(a.length==0)
+        return b;
+    if(a[0]%2!=0){
+        b[i]=a.shift();
+        return orderOdds(a,freePosForEven,b,++i);    
+    }  
+    else{
+        b[freePosForEven]=a.shift();
+        return orderOdds(a,freePosForEven+1,b,i);
     }
 }
 
@@ -447,7 +447,4 @@ function firstOddsRC(myArray){
 
 function ex_11_I(myArray){
   return firstOdds(myArray);
-}
-function ex_11_R(myArray){
-  return firstOddsRC(myArray);
 }
