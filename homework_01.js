@@ -378,7 +378,7 @@ function creaArrR(a, n){
       return myArray;
        return myArray[a];
      } else {
-       return a, creaArr(a, (n - 1));
+       return a, creaArr(a, n);
   }
 }
 
