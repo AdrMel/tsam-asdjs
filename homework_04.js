@@ -7,7 +7,7 @@ Stack.prototype.push = function(e){
 	this.array[this.array.length] = e;
 };
 
-// inserisce l'elemento al penultimo posto dell'array
+// prende l'elemento all' ultimo posto dell'array
 Stack.prototype.pop = function(){
 	var temp = this.array[this.array.length - 1];
 	this.array.splice(this.array.length - 1, 1);
