@@ -34,7 +34,7 @@ function dec2bin(n){
         }
         var stringBinario = "";
         	while (!binario.isEmpty()) {
-				stringBinario = binario.pop();
+				stringBinario += binario.pop();
 		}
 	return stringBinario;
 }
