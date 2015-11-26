@@ -1,6 +1,6 @@
 // Es 1
 
-function sumWhileNeg(){ 
+Array.prototype.ex_1 = function(){ 
     var tot = 0;
     this.every(x => {
         if(x > 0){
@@ -12,12 +12,11 @@ function sumWhileNeg(){
     return tot;
 }
 
-// Per Tiziano
-    Array.prototype.ex_1 = sumWhileNeg();
 
+    
 // Es 3
 
-Array.prototype.media = function media() {
+Array.prototype.ex_3 = function() {
         if(this.length == 0){
         return 0;
     }else{
@@ -25,13 +24,9 @@ Array.prototype.media = function media() {
     }
 }
 
-//Per Tiziano
-
-Array.prototype.ex_3 = media();
-
 
 // Es 9
-function revert(){
+Array.prototype.ex_9 = function(){
     var b = [];
     var c = this.length - 1;
     for (var i = 0; i < this.length; i++){
@@ -41,17 +36,12 @@ function revert(){
     return a = b;
 }
 
-// Per Tiziano
-
-fArray.prototype.ex_11 = revert();
 
 // Es 11
 
- function oddFirst() {
+Array.prototype.ex_11 = function() {
     var pari = this.filter(x => (x % 2 == 0));
     var disp = this.filter(x => (x % 2 != 0));
     return disp.concat(pari);
 }
-
-Array.prototype.ex_11 = oddFirst();
 
